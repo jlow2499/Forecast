@@ -42,6 +42,50 @@ beer <- window(ausbeer, start=1992)
 autoplot(beer)
 ggsubseriesplot(beer)
 
+###4 Autocorrelation of non-seasonal time series
+
+# Create an autoplot of the oil data
+autoplot(oil)
+
+# Create a lag plot of the oil data
+gglagplot(oil)
+
+# Create an ACF plot of the oil data
+ggAcf(oil)
+
+###5 Autocorrelation of seasonal and cyclic time series
+
+# Plot the annual sunspot numbers
+autoplot(sunspot.year)
+ggAcf(sunspot.year)
+
+# Save the lag corresponding to maximum autocorrelation
+maxlag_sunspot <- 1
+
+# Plot the traffic on the Hyndsight blog
+autoplot(hyndsight)
+ggAcf(hyndsight)
+
+# Save the lag corresponding to maximum autocorrelation
+maxlag_hyndsight <- 7
+
+###6 Stock prices and white noise
+
+# Plot the original series
+autoplot(goog)
+
+# Plot the differenced series
+autoplot(diff(goog))
+
+# ACF of the differenced series
+ggAcf(diff(goog))
+
+# Ljung-Box test of the differenced series
+Box.test(diff(goog), lag = 10, type = "Ljung")
+
+
+
+
 
 
 
