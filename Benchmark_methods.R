@@ -63,4 +63,17 @@ accuracy(fc1, vn[, "Melbourne"])["Test set", "MAPE"]
 accuracy(fc2, vn[, "Melbourne"])["Test set", "MAPE"]
 accuracy(fc3, vn[, "Melbourne"])["Test set", "MAPE"]
 
+###6 Using tsCV for time series cross-validation
+
+# Compute cross-validated errors for up to 8 steps ahead
+e <- matrix(NA_real_, nrow = 1000, ncol = 8)
+for (h in 1:8)
+  e[, h] <- tsCV(goog, forecastfunction = naive, h = h)
+  
+# Compute the MSE values and remove missing values
+mse <- colMeans(e^2, na.rm = TRUE)
+
+# Plot the MSE values against the forecast horizon
+data.frame(h = 1:8, MSE = mse) %>%
+  ggplot(aes(x = h, y = MSE)) + geom_point()
 
