@@ -10,7 +10,7 @@ head(mydata)
 # Create a ts object called 
 mytsmyts <- ts(mydata[,2:4], start = c(1981, 1), frequency = 4)
 
-###Time Series Plots
+###2 Time Series Plots
 
 # Plot the data with facetting
 autoplot(myts, facets = TRUE)
@@ -27,7 +27,20 @@ frequency(gold)
 frequency(woolyrnq)
 frequency(gas)
 
+###3 Seasonal Plots
 
+# Load the fpp2 package
+library(fpp2)
+# Create plots of the a10 data
+autoplot(a10)
+ggseasonplot(a10)
+# Produce a polar coordinate season plot for the a10 data
+ggseasonplot(a10, polar = TRUE)
+# Restrict the ausbeer data to start in 1992
+beer <- window(ausbeer, start=1992)
+# Make plots of the beer data
+autoplot(beer)
+ggsubseriesplot(beer)
 
 
 
